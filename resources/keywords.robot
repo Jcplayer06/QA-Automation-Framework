@@ -8,20 +8,8 @@ Resource    locators.robot
 *** Keywords ***
 
 Open Application
-    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
-
-    ${prefs}=    Create Dictionary
-    ...    credentials_enable_service=False
-    ...    profile.password_manager_enabled=False
-
-    Call Method    ${options}    add_experimental_option    prefs    ${prefs}
-    Call Method    ${options}    add_argument    --start-maximized
-
-    Open Browser
-    ...    ${BASE_URL}
-    ...    chrome
-    ...    options=${options}
-
+    Open Browser    ${BASE_URL}    edge
+    Maximize Browser Window
     Set Selenium Timeout    ${TIMEOUT}
 
 Close Application
@@ -34,25 +22,38 @@ Login
     [Arguments]    ${username}    ${password}
 
     Wait Until Element Is Visible    ${USERNAME_INPUT}
+
+    Clear Element Text    ${USERNAME_INPUT}
+    Clear Element Text    ${PASSWORD_INPUT}
+
     Input Text        ${USERNAME_INPUT}    ${username}
     Input Password    ${PASSWORD_INPUT}    ${password}
+
     Click Button      ${LOGIN_BUTTON}
+
+Verify Login Successful
+    Wait Until Element Is Visible    ${PRODUCT_TITLE}
+    Element Text Should Be    ${PRODUCT_TITLE}    Products
+
+Verify Login Failed
+    Wait Until Element Is Visible    ${ERROR_MESSAGE}
 
 Add Backpack To Cart
     Click Button    ${ADD_BACKPACK}
 
+Verify Cart Badge
+    [Arguments]    ${count}
+    Element Text Should Be    ${CART_BADGE}    ${count}
+
 Open Shopping Cart
     Click Element    ${SHOPPING_CART}
 
-Verify Cart Badge
-    [Arguments]    ${expected}
-
-    Element Text Should Be
-    ...    ${CART_BADGE}
-    ...    ${expected}
-
 Verify Item Exists In Cart
     Wait Until Element Is Visible    ${CART_ITEM}
+
+Remove Backpack
+    Click Button    ${REMOVE_BACKPACK}
+    Wait Until Element Is Not Visible    ${REMOVE_BACKPACK}
 
 Proceed To Checkout
     Click Button    ${CHECKOUT_BUTTON}
@@ -60,18 +61,17 @@ Proceed To Checkout
 Fill Checkout Information
     [Arguments]    ${firstname}    ${lastname}    ${zipcode}
 
-    Input Text    ${FIRST_NAME}    ${firstname}
-    Input Text    ${LAST_NAME}     ${lastname}
-    Input Text    ${ZIP_CODE}      ${zipcode}
+    Input Text    id:first-name    ${firstname}
+    Input Text    id:last-name     ${lastname}
+    Input Text    id:postal-code   ${zipcode}
 
-    Click Button    ${CONTINUE_BUTTON}
+    Click Button    id:continue
 
 Finish Checkout
     Click Button    ${FINISH_BUTTON}
 
 Verify Successful Checkout
     Wait Until Element Is Visible    ${SUCCESS_MESSAGE}
-
     Element Text Should Be
     ...    ${SUCCESS_MESSAGE}
     ...    Thank you for your order!

@@ -7,10 +7,18 @@ Test Setup        Go To Login Page
 
 *** Test Cases ***
 
-Valid Login
+Add And Remove Backpack
+
     Login    ${VALID_USER}    ${VALID_PASSWORD}
+
     Verify Login Successful
 
-Locked User Login
-    Login    ${LOCKED_USER}    ${VALID_PASSWORD}
-    Verify Login Failed
+    Add Backpack To Cart
+
+    Verify Cart Badge    1
+
+    Open Shopping Cart
+
+    Verify Item Exists In Cart
+
+    Remove Backpack

@@ -7,10 +7,10 @@ Test Setup        Go To Login Page
 
 *** Test Cases ***
 
-Valid Login
+Inventory Page Loads
     Login    ${VALID_USER}    ${VALID_PASSWORD}
     Verify Login Successful
 
-Locked User Login
-    Login    ${LOCKED_USER}    ${VALID_PASSWORD}
-    Verify Login Failed
+Backpack Is Visible
+    Login    ${VALID_USER}    ${VALID_PASSWORD}
+    Wait Until Element Is Visible    ${BACKPACK}

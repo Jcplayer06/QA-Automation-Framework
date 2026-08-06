@@ -7,8 +7,4 @@ ${VALID_PASSWORD}      secret_sauce
 
 ${LOCKED_USER}         locked_out_user
 
-${INVALID_USER}        invalid_user
-${INVALID_PASSWORD}    wrong_password
-
-${HEADLESS}            False
 ${TIMEOUT}             10

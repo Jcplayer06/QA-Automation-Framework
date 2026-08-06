@@ -7,10 +7,21 @@ Test Setup        Go To Login Page
 
 *** Test Cases ***
 
-Valid Login
+Complete Checkout
     Login    ${VALID_USER}    ${VALID_PASSWORD}
+
     Verify Login Successful
 
-Locked User Login
-    Login    ${LOCKED_USER}    ${VALID_PASSWORD}
-    Verify Login Failed
+    Add Backpack To Cart
+
+    Open Shopping Cart
+
+    Verify Item Exists In Cart
+
+    Proceed To Checkout
+
+    Fill Checkout Information    Joshua    Carbon    1000
+
+    Finish Checkout
+
+    Verify Successful Checkout
