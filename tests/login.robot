@@ -13,4 +13,18 @@ Valid Login
 
 Locked User Login
     Login    ${LOCKED_USER}    ${VALID_PASSWORD}
-    Verify Login Failed
+    Verify Login Failed    locked out
+
+Invalid Credentials Login
+    [Documentation]    Data-driven case: credentials are loaded from
+    ...                testdata/users.json instead of variables.robot.
+    Login As User Type    invalid
+    Verify Login Failed    do not match
+
+Empty Username
+    Login    ${EMPTY}    ${VALID_PASSWORD}
+    Verify Login Failed    Username is required
+
+Empty Password
+    Login    ${VALID_USER}    ${EMPTY}
+    Verify Login Failed    Password is required

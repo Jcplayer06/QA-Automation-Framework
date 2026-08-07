@@ -4,4 +4,7 @@ __pycache__/
 output.xml
 log.html
 report.html
-selenium-screenshot-*.png
+logs/
+reports/
+screenshots/
+.env

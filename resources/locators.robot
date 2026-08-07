@@ -14,6 +14,9 @@ ${BACKPACK}            xpath=//div[text()="Sauce Labs Backpack"]
 ${ADD_BACKPACK}        id:add-to-cart-sauce-labs-backpack
 ${REMOVE_BACKPACK}     id:remove-sauce-labs-backpack
 
+${ADD_BIKE_LIGHT}      id:add-to-cart-sauce-labs-bike-light
+${REMOVE_BIKE_LIGHT}   id:remove-sauce-labs-bike-light
+
 # ---------------- CART ----------------
 
 ${SHOPPING_CART}       css:.shopping_cart_link
@@ -32,3 +35,7 @@ ${FINISH_BUTTON}       id:finish
 # ---------------- COMPLETE ----------------
 
 ${SUCCESS_MESSAGE}     css:.complete-header
+
+# ---------------- CHECKOUT ERRORS ----------------
+
+${CHECKOUT_ERROR}      xpath=//h3[@data-test='error']
