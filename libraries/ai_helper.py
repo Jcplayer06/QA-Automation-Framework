@@ -34,7 +34,7 @@ class AIHelper:
 
     def __init__(self, output_xml_path: Path = None):
         self.output_xml_path = output_xml_path or (
-            Path(__file__).parent.parent / "output.xml"
+            Path(__file__).parent.parent / "reports" / "output.xml"
         )
 
     def _parse_results(self):
