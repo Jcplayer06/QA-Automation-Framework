@@ -3,7 +3,7 @@ echo =====================================
 echo Running Robot Framework Tests...
 echo =====================================
 
-robot tests
+robot --outputdir reports tests
 
 echo.
 echo =====================================
