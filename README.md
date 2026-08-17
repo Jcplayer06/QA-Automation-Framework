@@ -1,4 +1,4 @@
-# AI-SDET Automation Framework
+# QA-Automation-Framework
 
 ## Overview
 
